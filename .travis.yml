@@ -1,26 +1,28 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 notifications:
   email:
-    on_success: change # only if status change from fail to success
-    on_failure: always # if there is a fail
+    on_success: change
+    on_failure: always
     recipients:
-      - arnold.balliu@gmail.com
+    - arnold.balliu@gmail.com
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_install:
-  - npm i -g npm
+- npm i -g npm
 install:
-  - npm install
+- npm install
 before_script:
-  - export CI=false
+- export CI=false
 script:
-  - npm test -- --coverage
+- npm test -- --coverage
 deploy:
   skip_cleanup: true
-  provider: script
-  script: npm run build
+  provider: heroku
+  api_key:
+    secure: btRK60RbY62bMVd7X6Alzfpa0oXEvDWq31p8+LteSqb/zcWznccu3tav0XOcOj+hBaza2qP/iWQPXGurG9XBDxvoztCfyd69OXOL8cBqFFAPUvvEO5JQWJ9t+t9EFK8qIO+vgl0INLrFeijZy7Jvt8mHVfPQLDDiXE1fpp1coSZ5RMzfLuR2+wZaLcbwVPHcWkjRxvYZXoQOvESVxt5C6ERKMlTGELrscO0RMf0d7lWuNH6XUk6NZDMoJYALaBNmauJEWBV780zMFBPb5sqvWVCo+KS3bwhAAY+MS1vFILaqFHEB/ajG0boARUM4NIrPW33eMfaPFTwDDbWlHPevOu4Md4O+0qMHfW5PGD2AOIXnt6mjAxUrcSClJedg1muvZ5y0NIHW2Wf1X6bQomJuF7bf+uuRaY/FiksvvE1NQ7jXxbRVWkp+hT+juVMZGU63gKk+e4pjfFuZK0TQujRUbTR+oD1jjfY6Y65HFmPAQ5hqD612Ce3jq/70SlXFmlWP/qd57nD4OfhJM2OF8VkPspxRVzBngeK5K1idbVC1gR1xf//yABZFwfjOywzh0dhWiGkiz2Xg9IhI7rY9tPXNKiOD2Ub9FyGRsp7GFtin7wDFdqH2SY5/i0cGmRqOBCTUosmMtSuBXO8tLsr2hylTHKpagjz55u5B/ilX3X7sVas=
   on:
-    branch: ["master"]
+    branch:
+    - master
