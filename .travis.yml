@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - "stable"
+notifications:
+  email:
+    on_success: change # only if status change from fail to success
+    on_failure: always # if there is a fail
+    recipients:
+      - arnold.balliu@gmail.com
+cache:
+  directories:
+    - node_modules
+before_install:
+  - npm i -g npm
+install:
+  - npm install
+before_script:
+  - export CI=false
+script:
+  - npm test -- --coverage
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: npm run build
+  on:
+    branch: ["master"]
