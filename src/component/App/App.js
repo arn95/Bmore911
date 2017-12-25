@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        This is component App
+        This is component App. Hello!
       </div>
     );
   }
