@@ -7,7 +7,7 @@ import {
     Button
 } from 'semantic-ui-react';
 import Typist from 'react-typist';
-import { Link } from 'react-router-dom';
+import { Router, Link } from 'react-router-dom';
 
 var imageStyle = { marginTop: 30 };
 const ImageWithText = (props) => (
