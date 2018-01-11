@@ -3,7 +3,7 @@ node_js:
 - stable
 notifications:
   email:
-    on_success: change
+    on_success: never
     on_failure: always
     recipients:
     - arnold.balliu@gmail.com
@@ -18,6 +18,8 @@ before_script:
 - export CI=false
 script:
 - npm test -- --coverage
+before_deploy:
+- npm run build
 deploy:
   provider: heroku
   api_key:
