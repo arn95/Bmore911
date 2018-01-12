@@ -1,0 +1,8 @@
+body>.grid {
+    height: 100%;
+    background-color: #DADADA;
+}
+.column {
+    margin-top: 300px;
+    max-width: 300px;
+} 

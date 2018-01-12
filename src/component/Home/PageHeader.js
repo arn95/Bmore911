@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import {
     Container,
     Header,
+    Button,
     Segment,
     Menu,
     //Button
 } from 'semantic-ui-react';
 import Typist from 'react-typist';
-//import { Router, Link } from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 
 var imageStyle = { marginTop: 30 };
 const ImageWithText = (props) => (
     <div className="ui container fluid">
-    
+
         <Header
             as='h1'
             content='Welcome'
@@ -21,7 +22,7 @@ const ImageWithText = (props) => (
         />
         <Header
             as='h2'
-            content='Designed to show the latest emergency calls in baltimore'
+            content='Designed to show the latest emergency calls in Baltimore'
             inverted
             style={{ fontSize: '1.9em', fontWeight: 'normal' }}
         />
@@ -49,7 +50,7 @@ class PageHeader extends Component {
             <Segment vertical inverted textAlign='center' style={{ minHeight: 700, padding: '1em 0em' }}>
                 <Container>
                     <Menu inverted pointing secondary size='large'>
-                        {/* <Menu.Item as='a' active><Link to='/'>Home</Link></Menu.Item>
+                        <Menu.Item as='a' active><Link to='/'>Home</Link></Menu.Item>
                         <Menu.Item as='a'><Link to='/about'>About</Link></Menu.Item>
                         <Menu.Item position='right'>
                             <Link to='/login'>
@@ -58,7 +59,7 @@ class PageHeader extends Component {
                             <Link to='/register'>
                                 <Button as='a' inverted style={{ marginLeft: '0.5em' }}>Register</Button>
                             </Link>
-                        </Menu.Item> */}
+                        </Menu.Item>
                     </Menu>
                 </Container>
                 <ImageWithText url="/images/snazzy-image.png" />
