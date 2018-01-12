@@ -16,8 +16,6 @@ install:
 - npm install
 script:
 - npm test -- --coverage
-before_deploy:
-- npm run build
 deploy:
   skip-cleanup: true
   provider: heroku
