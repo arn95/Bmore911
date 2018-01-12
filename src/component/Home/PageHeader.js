@@ -4,10 +4,10 @@ import {
     Header,
     Segment,
     Menu,
-    Button
+    //Button
 } from 'semantic-ui-react';
 import Typist from 'react-typist';
-import { Router, Link } from 'react-router-dom';
+//import { Router, Link } from 'react-router-dom';
 
 var imageStyle = { marginTop: 30 };
 const ImageWithText = (props) => (
