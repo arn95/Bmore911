@@ -11,7 +11,8 @@ import { Router, Link } from 'react-router-dom';
 
 var imageStyle = { marginTop: 30 };
 const ImageWithText = (props) => (
-    <Container ui fluid>
+    <div className="ui container fluid">
+    
         <Header
             as='h1'
             content='Welcome'
@@ -31,7 +32,7 @@ const ImageWithText = (props) => (
             <Typist.Backspace count={5} delay={500} />
             <span style={{ fontSize: '1.7em', fontWeight: 'bold', color: '#5efc82' }}>Simple.</span>
         </Typist>
-        <img class="ui large circular centered image" alt="Circular baltimore map" src={props.url} style={imageStyle} />
+        <img className="ui large circular centered image" alt="Circular baltimore map" src={props.url} style={imageStyle} />
         <Header
             as='h3'
             content='Powered by Google Maps.'
@@ -39,7 +40,7 @@ const ImageWithText = (props) => (
             style={{ fontSize: '1.0em', fontWeight: 'normal' }}
         />
 
-    </Container>
+    </div>
 )
 
 class PageHeader extends Component {

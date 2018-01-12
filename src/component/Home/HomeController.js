@@ -7,7 +7,7 @@ class HomeController extends Component {
     render() {
         return (
             <div>
-                <div class="page">
+                <div className="page">
                     <PageHeader/>
                     <PageMain/>
                     <PageFooter/>

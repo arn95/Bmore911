@@ -3,31 +3,31 @@ import React, { Component } from 'react';
 class PageMain extends Component {
     render() {
         return (
-            <div class="page-content">
-            <div class="ui container fluid">
-                <div class="ui vertical segment">
-                <div class="ui three statistics">
-                <div class="statistic">
-                    <div class="value">
+            <div className="page-content">
+            <div className="ui container fluid">
+                <div className="ui vertical segment">
+                <div className="ui three statistics">
+                <div className="statistic">
+                    <div className="value">
                     25,000
                     </div>
-                    <div class="label">
+                    <div className="label">
                     Call Records
                     </div>
                 </div>
-                <div class="statistic">
-                    <div class="value">
+                <div className="statistic">
+                    <div className="value">
                     100
                     </div>
-                    <div class="label">
+                    <div className="label">
                     Calls Today
                     </div>
                 </div>
-                <div class="statistic">
-                    <div class="value">
+                <div className="statistic">
+                    <div className="value">
                     1000
                     </div>
-                    <div class="label">
+                    <div className="label">
                     Calls This Month
                     </div>
                 </div>
