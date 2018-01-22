@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class AboutController extends Component {
+class Dashboard extends Component {
     render() {
         return (
             <div className='AppContent'>
@@ -10,4 +10,4 @@ class AboutController extends Component {
     }
 }
 
-export default AboutController;
+export default Dashboard;

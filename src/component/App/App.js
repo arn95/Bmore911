@@ -3,20 +3,24 @@ import React, { Component } from 'react';
 import './App.css';
 import HomeController from '../Home/HomeController';
 import AboutController from '../About/AboutController';
-import LoginController from '../Login/LoginController';
-import RegisterController from '../Register/RegisterController';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import DashboardController from '../Dashboard/DashboardController';
+import AppHeader from './AppHeader';
+import AppFooter from './AppFooter';
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <Switch>
-                    <Route exact={true} path="/" component={HomeController} />
-                    <Route path="/about" component={AboutController} />
-                    <Route path="/login" component={LoginController} />
-                    <Route path="/register" component={RegisterController} />
-                </Switch>
+                <AppHeader/>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact={true} path="/" component={HomeController} />
+                            <Route path="/about" component={AboutController} />
+                            <Route path="/dashboard" component={DashboardController} />
+                        </Switch>
+                    </BrowserRouter>
+                <AppFooter/>
             </div>
         );
     }
