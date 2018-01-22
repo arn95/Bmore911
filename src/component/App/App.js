@@ -11,17 +11,19 @@ import AppFooter from './AppFooter';
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <AppHeader/>
-                    <BrowserRouter>
+            <BrowserRouter>
+                <div className='App' >
+                    <AppHeader />
+                    <div className='AppContent'>
                         <Switch>
                             <Route exact={true} path="/" component={HomeController} />
                             <Route path="/about" component={AboutController} />
                             <Route path="/dashboard" component={DashboardController} />
                         </Switch>
-                    </BrowserRouter>
-                <AppFooter/>
-            </div>
+                    </div>
+                    <AppFooter />
+                </div>
+            </BrowserRouter>
         );
     }
 }

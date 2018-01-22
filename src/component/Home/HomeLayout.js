@@ -38,7 +38,7 @@ const ImageWithText = (props) => (
 
 const HomeLayout = (props) => (
 
-    <div className="AppContent">
+    <div>
 
         <Segment vertical inverted textAlign='center' style={{ minHeight: 700, padding: '1em 0em' }}>
             <ImageWithText url="/images/snazzy-image.png" />

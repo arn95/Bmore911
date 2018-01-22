@@ -4,11 +4,10 @@ import Container from 'semantic-ui-react/dist/commonjs/elements/Container/Contai
 import Link from 'react-router-dom/Link';
 import Button from 'semantic-ui-react/dist/commonjs/elements/Button/Button';
 import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
 
 class AppHeader extends Component {
 
-    state = { activeItem: 'home'}
+    state = { activeItem: 'home' }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -20,35 +19,29 @@ class AppHeader extends Component {
             <Segment size='mini' inverted vertical textAlign='center'>
                 <Container>
                     <Menu inverted secondary size='large'>
-                        <Menu.Item 
-                            active={activeItem === 'home'} 
-                            name='home' 
-                            inverted={'true'} 
-                            color='green' 
+                        <Menu.Item
+                            active={activeItem === 'home'}
+                            name='home'
+                            inverted={'true'}
+                            color='green'
                             as='span'
                             onClick={this.handleItemClick}>
-                            <BrowserRouter>
-                                <Link to='/'>Home</Link>
-                            </BrowserRouter>
+                            <Link to='/'>Home</Link>
                         </Menu.Item>
-                        <Menu.Item 
-                            active={activeItem === 'about'} 
-                            name='about' 
-                            inverted={'true'} 
-                            color='green' 
+                        <Menu.Item
+                            active={activeItem === 'about'}
+                            name='about'
+                            inverted={'true'}
+                            color='green'
                             as='span'
                             onClick={this.handleItemClick}>
-                            <BrowserRouter>
-                                <Link to='/about'>About</Link>
-                            </BrowserRouter>
+                            <Link to='/about'>About</Link>
                         </Menu.Item>
                         <Menu.Item
                             position='right'>
-                            <BrowserRouter>
-                                <Link to='/dashboard'>
-                                    <Button name='dashboard' onClick={this.handleItemClick} active={activeItem === 'dashboard'} inverted color='green'>Dashboard</Button>
-                                </Link>
-                            </BrowserRouter>
+                            <Link to='/dashboard'>
+                                <Button name='dashboard' onClick={this.handleItemClick} active={activeItem === 'dashboard'} inverted color='green'>Dashboard</Button>
+                            </Link>
                         </Menu.Item>
                     </Menu>
                 </Container>
