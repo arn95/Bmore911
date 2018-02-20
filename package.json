@@ -4,14 +4,20 @@
   "homepage": "https://bmore911.herokuapp.com",
   "private": true,
   "dependencies": {
-    "jest-cli": "^22.0.6",
+    "@types/googlemaps": "^3.30.7",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.0.38",
+    "axios": "^0.18.0",
+    "jest-cli": "^22.3.0",
     "react": "^16.2.0",
+    "react-date-range": "^0.9.4",
     "react-dom": "^16.2.0",
+    "react-google-maps": "^9.4.5",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.0.17",
+    "react-scripts": "^1.1.1",
     "react-typist": "^2.0.4",
-    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.77.2"
   },
   "scripts": {
@@ -21,6 +27,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "jest": "^22.0.6"
+    "jest": "^22.3.0"
   }
 }
