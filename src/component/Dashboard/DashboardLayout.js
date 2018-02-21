@@ -151,6 +151,7 @@ class DashboardLayout extends Component {
 
     handleFilterFormSubmit = () => {
         var instance = this
+        instance.setState({showLoaders:true})
         console.log({
             'start_date': this.formStartDate,
             'end_date': this.formEndDate,
