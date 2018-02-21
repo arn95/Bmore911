@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment, Button, Table, Checkbox, Popup, Form, Header, Divider } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Table, Checkbox, Popup, Form, Header, Divider, Dimmer, Loader } from 'semantic-ui-react'
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import Marker from 'react-google-maps/lib/components/Marker'
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
 import { DateRange } from 'react-date-range'
 import axios from 'axios'
+import AppStatics from '../../helpers/AppStatics'
 
 const BALTIMORE_LAT = 39.299236
 const BALTIMORE_LONG = -76.609383
@@ -33,7 +34,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             {props.callRecords.map((record) =>
                 <Marker
                     key={record.id}
-                    position={{ lat: record.lat, lng: record.long }}
+                    position={{ lat: record.latitude, lng: record.longitude }}
                 />
             )}
         </MarkerClusterer>
@@ -80,7 +81,24 @@ class DashboardLayout extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { visibleSidebar: false, isMarkerShown: false };
+        this.state = { visibleSidebar: false, isMarkerShown: false, call_records: [], showLoaders: true };
+        axios.defaults.headers.post['Content-Type'] = 'application/json';
+    }
+
+    componentWillMount() {
+        var instance = this
+        axios.post(AppStatics.API_BASE_URL + '/records/search', {
+                
+                'start_date': Date(),
+                'end_date': Date()
+        })
+        .then(response => {
+            instance.setState({call_records: response.data, showLoaders: false})
+        })
+        .catch(function(error) {
+            instance.setState({showLoaders:false})
+            console.log(error)
+        });
     }
 
     dummyCallRecords = () => [
@@ -97,14 +115,14 @@ class DashboardLayout extends Component {
 
     customRenderRow = (callRecord, index) => [
         { content: <Checkbox key={"table_cell_checkbox_" + callRecord.id }/> },
-        { content: callRecord.id, key:("table_cell_" + callRecord.id + "_id")},
-        { content: callRecord.time, key:("table_cell_" + callRecord.id + "_time") },
+        { content: callRecord.bpd_call_id, key:("table_cell_" + callRecord.id + "_id")},
+        { content: callRecord.call_time, key:("table_cell_" + callRecord.id + "_time") },
         { content: callRecord.priority, key:("table_cell_" + callRecord.id + "_priority")},
         { content: callRecord.district, key:("table_cell_" + callRecord.id + "_district")},
-        { content: callRecord.desc, key:("table_cell_" + callRecord.id + "_desc") },
-        { content: callRecord.addr, key:("table_cell_" + callRecord.id + "_addr") },
-        { content: callRecord.lat, key:("table_cell_" + callRecord.id + "_lat") },
-        { content: callRecord.long, key:("table_cell_" + callRecord.id + "_long") }
+        { content: callRecord.description, key:("table_cell_" + callRecord.id + "_desc") },
+        { content: callRecord.address, key:("table_cell_" + callRecord.id + "_addr") },
+        { content: callRecord.latitude, key:("table_cell_" + callRecord.id + "_lat") },
+        { content: callRecord.longitude, key:("table_cell_" + callRecord.id + "_long") }
     ]
 
     handlePriorityChange = (event, data) => {
@@ -132,8 +150,28 @@ class DashboardLayout extends Component {
     }
 
     handleFilterFormSubmit = () => {
-        axios.get('https://api.github.com/users/maecapozzi')
-        .then(response => console.log(response))
+        var instance = this
+        console.log({
+            'start_date': this.formStartDate,
+            'end_date': this.formEndDate,
+            'priorities': this.formPriorities,
+            'districts': this.formDistricts
+        });
+        axios.post(AppStatics.API_BASE_URL + '/records/search', {
+            
+                'start_date': this.formStartDate,
+                'end_date': this.formEndDate,
+                'priority': this.formPriorities,
+                'districts': this.formDistricts
+            
+        })
+        .then(response => {
+            instance.setState({call_records: response.data, showLoaders: false})
+        })
+        .catch(function(error) {
+            instance.setState({showLoaders:false})
+            console.log(error)
+        });
     }
 
     addMarker = (lat, long) => {
@@ -158,7 +196,7 @@ class DashboardLayout extends Component {
             <div>
                 <Sidebar.Pushable as={Segment}>
                     <Sidebar animation='slide along' width='wide' visible={this.state.visibleSidebar} vertical='true'>
-                        <Form style={{ margin: 10 }} onSubmit={this.handleFilterFormSubmit}>
+                        <Form style={{ margin: 10 }} onSubmit={this.handleFilterFormSubmit.bind(this)}>
                             <Header as='h4'>Filters</Header>
                             <Divider horizontal>Date Range</Divider>
                             <DateRange
@@ -200,15 +238,17 @@ class DashboardLayout extends Component {
                             />
                         </Segment>
                         <Segment basic>
-
+                        <Dimmer active={this.state.showLoaders}>
+                            <Loader size='large'>Loading</Loader>
+                        </Dimmer>
                             <MyMapComponent
-                                callRecords={this.dummyCallRecords()}
+                                callRecords={this.state.call_records}
                                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBdF1qr74wlk73VU12_RCfnSWgUC0qwAqE&libraries=geometry,drawing,places"
                                 loadingElement={<div style={{ height: `100%` }} />}
                                 containerElement={<div style={{ height: `600px` }} />}
                                 mapElement={<div style={{ height: `100%` }} />}
                             />
-                            <Table celled singleLine compact inverted selectable headerRow={tableHeaders} renderBodyRow={this.customRenderRow} tableData={this.dummyCallRecords()} />
+                            <Table celled singleLine compact inverted selectable headerRow={tableHeaders} renderBodyRow={this.customRenderRow} tableData={this.state.callRecords} />
                         </Segment>
                     </Sidebar.Pusher>
 
