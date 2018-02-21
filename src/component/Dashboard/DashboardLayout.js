@@ -101,11 +101,6 @@ class DashboardLayout extends Component {
         });
     }
 
-    dummyCallRecords = () => [
-        { id: 'P173321597', time: '2017-11-28 15:31:00', priority: '2', district: 'ED', desc: 'NARCOTICSOutside', addr: '2300 BLK E PRESTON ST', lat: 39.30570900, long: -76.58510300 },
-        { id: 'P173321591', time: '2017-11-28 15:31:00', priority: '2', district: 'ED', desc: 'NARCOTICSOutside', addr: '2300 BLK E PRESTON ST', lat: 39.30570900, long: -76.58510300 }
-    ]
-
     componentDidMount() {
     }
 
@@ -249,7 +244,7 @@ class DashboardLayout extends Component {
                                 containerElement={<div style={{ height: `600px` }} />}
                                 mapElement={<div style={{ height: `100%` }} />}
                             />
-                            <Table celled singleLine compact inverted selectable headerRow={tableHeaders} renderBodyRow={this.customRenderRow} tableData={this.state.callRecords} />
+                            <Table celled singleLine compact inverted selectable headerRow={tableHeaders} renderBodyRow={this.customRenderRow} tableData={this.state.call_records} />
                         </Segment>
                     </Sidebar.Pusher>
 
