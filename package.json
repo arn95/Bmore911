@@ -18,7 +18,8 @@
     "react-scripts": "^1.1.1",
     "react-typist": "^2.0.4",
     "semantic-ui-css": "^2.2.14",
-    "semantic-ui-react": "^0.77.2"
+    "semantic-ui-react": "^0.77.2",
+    "superagent": "^3.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
