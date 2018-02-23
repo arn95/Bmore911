@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { Header, Segment, Icon, Statistic } from 'semantic-ui-react';
 import Typist from 'react-typist';
 
 var imageStyle = { marginTop: 30 };
@@ -45,41 +45,20 @@ const HomeLayout = (props) => (
         </Segment>
 
         <div className="ui container fluid">
+            <Icon size='huge' name='lightning' style={{marginTop: 20}}/>
+            <Header as='h2' textAlign='center'>
+                    <Header.Content>
+                        CALL STATS
+                    </Header.Content>
+                </Header>
             <div className="ui vertical segment">
-                <div className="ui four statistics">
-                    <div className="statistic">
-                        <div className="value">
-                            {props.today}
-                        </div>
-                        <div className="label">
-                            Calls Today
-                        </div>
-                    </div>
-                    <div className="statistic">
-                        <div className="value">
-                            {props.week}
-                        </div>
-                        <div className="label">
-                            Calls This Week
-                        </div>
-                    </div>
-                    <div className="statistic">
-                        <div className="value">
-                            {props.month}
-                        </div>
-                        <div className="label">
-                            Calls This Month
-                        </div>
-                    </div>
-                    <div className="statistic">
-                        <div className="value">
-                            {props.total}
-                        </div>
-                        <div className="label">
-                            Call Records
-                        </div>
-                    </div>
-                </div>
+
+                <Statistic.Group size='small' widths={2}>
+                    <Statistic label='Today' value={props.today}/>
+                    <Statistic label='This Week' value={props.week}/>
+                    <Statistic label='This Month' value={props.month}/>
+                    <Statistic label='Total' value={props.total}/>
+                </Statistic.Group>
             </div>
         </div>
     </div>

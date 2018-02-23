@@ -17,7 +17,6 @@ class HomeController extends Component {
         async.series([
              (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/today').then(function(response){
                 if (response.ok){
-                    console.log(response)
                     instance.setState( {today: response.body.data } )
                 } else if (response.body.message){
                     console.error(response.body.message)

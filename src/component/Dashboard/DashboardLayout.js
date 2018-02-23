@@ -5,7 +5,7 @@ import Marker from 'react-google-maps/lib/components/Marker'
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
 import { DateRange } from 'react-date-range'
 import request from 'superagent'
-import superdebug from 'superagent-debugger'
+//import superdebug from 'superagent-debugger'
 import AppStatics from '../../helpers/AppStatics'
 import Momentjs from 'moment'
 
@@ -222,14 +222,14 @@ class DashboardLayout extends Component {
                 'priorities': this.formPriorities,
                 'districts': this.formDistricts
             })
-            .use(superdebug(console.info))
+            //.use(superdebug(console.info))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
             .then(function (response) {
                 //console.log(response.body.data)
 
                 if (response.ok)
-                    instance.setState({ call_records: response.body.data, showLoaders: false })
+                    instance.setState({ call_records: response.body.data, showLoaders: false, visibleSidebar: false, activeTimelineButton: 'none' })
                 else if (response.body.message){
                     console.error(response.body.message)
                 }
@@ -238,7 +238,7 @@ class DashboardLayout extends Component {
                 }
             })
             .catch(function (error) {
-                instance.setState({ showLoaders: false })
+                instance.setState({ showLoaders: false, visibleSidebar:false })
                 console.log(error)
             });
     }
@@ -310,17 +310,17 @@ class DashboardLayout extends Component {
                     </Sidebar>
 
                     <Sidebar.Pusher>
-                        <Grid inverted padded>
+                        <Grid stackable doubling inverted padded>
                             <Grid.Row color='black'>
                                 <Grid.Column width={2} textAlign='left' verticalAlign='middle'>
                                     <Popup
-                                        trigger={<Button inverted onClick={this.toggleSidebarVisibility.bind(this)} icon='sidebar' />}
+                                        trigger={<Button compact size='small'inverted onClick={this.toggleSidebarVisibility.bind(this)} icon='sidebar' />}
                                         content="Show sidebar"
                                         basic
                                     />
                                 </Grid.Column>
-                                <Grid.Column width={12} textAlign='center' verticalAlign='middle'>
-                                    <Button.Group inverted color='green'>
+                                <Grid.Column width={12}  textAlign='center' verticalAlign='middle'>
+                                    <Button.Group compact size='small' inverted color='green'>
                                         <Button active={this.state.activeTimelineButton === 'today'} name='today' onClick={this.handleTimelineButtonClick}>Today</Button>
                                         <Button active={this.state.activeTimelineButton === 'yesterday'} name='yesterday' onClick={this.handleTimelineButtonClick}>Yesterday</Button>
                                         <Button active={this.state.activeTimelineButton === '7days'} name='7days' onClick={this.handleTimelineButtonClick}>Last 7 Days</Button>
@@ -329,6 +329,7 @@ class DashboardLayout extends Component {
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
+                        
                         {/* <Segment fluid inverted vertical basic>
                             
 
