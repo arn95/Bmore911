@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment, Button, Table, Checkbox, Popup, Form, Header, Divider, Dimmer, Loader, Grid } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Table, Checkbox, Form, Header, Divider, Dimmer, Loader, Grid } from 'semantic-ui-react'
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import Marker from 'react-google-maps/lib/components/Marker'
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
@@ -555,11 +555,7 @@ class DashboardLayout extends Component {
                         <Grid stackable doubling inverted padded>
                             <Grid.Row color='black'>
                                 <Grid.Column width={2} textAlign='left' verticalAlign='middle'>
-                                    <Popup
-                                        trigger={<Button compact size='small'inverted onClick={this.toggleSidebarVisibility.bind(this)} icon='sidebar' />}
-                                        content="Show sidebar"
-                                        basic
-                                    />
+                                  <Button compact size='small'inverted onClick={this.toggleSidebarVisibility.bind(this)} icon='sidebar' />  
                                 </Grid.Column>
                                 <Grid.Column width={12}  textAlign='center' verticalAlign='middle'>
                                     <Button.Group compact size='small' inverted color='green'>
