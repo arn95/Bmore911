@@ -7,7 +7,7 @@
     "@types/googlemaps": "^3.30.7",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.0.38",
-    "axios": "^0.18.0",
+    "async": "^2.6.0",
     "jest-cli": "^22.3.0",
     "react": "^16.2.0",
     "react-date-range": "^0.9.4",
@@ -19,7 +19,8 @@
     "react-typist": "^2.0.4",
     "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.77.2",
-    "superagent": "^3.8.2"
+    "superagent": "^3.8.2",
+    "superagent-debugger": "^1.2.9"
   },
   "scripts": {
     "start": "react-scripts start",

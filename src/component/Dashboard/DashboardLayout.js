@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Sidebar, Segment, Button, Table, Checkbox, Popup, Form, Header, Divider, Dimmer, Loader, Grid, Label, Icon } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Table, Checkbox, Popup, Form, Header, Divider, Dimmer, Loader, Grid } from 'semantic-ui-react'
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
 import Marker from 'react-google-maps/lib/components/Marker'
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
 import { DateRange } from 'react-date-range'
-//import axios from 'axios'
 import request from 'superagent'
+import superdebug from 'superagent-debugger'
 import AppStatics from '../../helpers/AppStatics'
 import Momentjs from 'moment'
 
@@ -131,145 +131,46 @@ const priorities = [
 
 class DashboardLayout extends Component {
 
-    // dummy = {
-    //     data: [
-    //         {
-    //             "bpd_call_id": "P173330325",
-    //             "call_time": "2017-11-29 06:33:00",
-    //             "priority": 2,
-    //             "district": "NE",
-    //             "description": "911/NO  VOICE",
-    //             "address": "5300 HARFORD RD",
-    //             "latitude": 39.350885,
-    //             "longitude": -76.562639,
-    //             "created_at": "2018-01-10 02:34:47",
-    //             "updated_at": "2018-01-10 02:34:47"
-    //         },
-    //         {
-    //             "bpd_call_id": "P173330369",
-    //             "call_time": "2017-11-29 07:23:00",
-    //             "priority": 2,
-    //             "district": "NE",
-    //             "description": "HIT AND RUN",
-    //             "address": "4900 ANNTANA AV",
-    //             "latitude": 39.332309,
-    //             "longitude": -76.540621,
-    //             "created_at": "2018-01-10 02:34:48",
-    //             "updated_at": "2018-01-10 02:34:48"
-    //         },
-    //         {
-    //             "bpd_call_id": "P173330371",
-    //             "call_time": "2017-11-29 07:26:00",
-    //             "priority": 2,
-    //             "district": "NE",
-    //             "description": "AUTO THEFT",
-    //             "address": "5400 PEMBROKE AV",
-    //             "latitude": 39.329875,
-    //             "longitude": -76.715938,
-    //             "created_at": "2018-01-10 02:34:49",
-    //             "updated_at": "2018-01-10 02:34:49"
-    //         }
-    //     ]
-    // }
-
     formStartDate = ""
     formEndDate = ""
     formPriorities = []
     formDistricts = []
 
-    axiosOptions = {
-        baseURL: AppStatics.API_BASE_URL,
-        headers: { "Content-Type": 'application/json' }
-    };
-
-    axiosInstance//axios.create(this.axiosOptions)
-
     constructor(props) {
         super(props);
-        this.state = { visibleSidebar: false, call_records: [], isMarkerShown: false, showLoaders: true, currentTime: Momentjs().toString() };
+        this.state = {
+            visibleSidebar: false,
+            call_records: [],
+            isMarkerShown: false,
+            showLoaders: true,
+            activeTimelineButton: 'today'
+        }
     }
 
     componentDidMount() {
-        setInterval(() => this.handleCurrentTime(), 1000)
-        this.fetchCallRecordsMadeToday(this)
+        this.fetchCallRecordsByDayAgo(0)
     }
 
-    fetchCallRecordsMadeToday(instance) {
-        request
-            .post(AppStatics.API_BASE_URL + '/records/search')
-            .send({
-
-                'start_date': Momentjs().toString(),
-                'end_date': Momentjs().toString()
-            })
-            .set('Accept', 'application/json')
-            .set('Content-Type', 'application/json')
-            .then(function (response) {
-                console.log(response.body.data)
-                instance.setState({ call_records: response.body.data, showLoaders: false })
-            })
-            .catch(function (error) {
-                instance.setState({ showLoaders: false })
-                console.log(error)
-            });
-    }
-
-    fetchCallRecordsMadeYesterday() {
+    fetchCallRecordsByDayAgo(day) {
         var instance = this
+
         request
             .post(AppStatics.API_BASE_URL + '/records/search')
             .send({
-
-                'start_date': Momentjs().add(-1, 'days').toString(),
-                'end_date': Momentjs().add(-1, 'days').toString()
+                'start_date': Momentjs().add(day, 'days').toString(),
+                'end_date': Momentjs().add(day, 'days').toString()
             })
+            //.use(superdebug(console.info))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
             .then(function (response) {
-                console.log(response.body.data)
-                instance.setState({ call_records: response.body.data, showLoaders: false })
-            })
-            .catch(function (error) {
-                instance.setState({ showLoaders: false })
-                console.log(error)
-            });
-    }
-
-    fetchCallRecordsMadeLastSevenDays() {
-        var instance = this
-        request
-            .post(AppStatics.API_BASE_URL + '/records/search')
-            .send({
-
-                'start_date': Momentjs().add(-7, 'days').toString(),
-                'end_date': Momentjs().add(-7, 'days').toString()
-            })
-            .set('Accept', 'application/json')
-            .set('Content-Type', 'application/json')
-            .then(function (response) {
-                console.log(response.body.data)
-                instance.setState({ call_records: response.body.data, showLoaders: false })
-            })
-            .catch(function (error) {
-                instance.setState({ showLoaders: false })
-                console.log(error)
-            });
-    }
-
-    fetchCallRecordsMadeLastThirtyDays() {
-        var instance = this
-        request
-            .post(AppStatics.API_BASE_URL + '/records/search')
-            .send({
-
-                'start_date': Momentjs().add(-30, 'days').toString(),
-                'end_date': Momentjs().add(-30, 'days').toString()
-            })
-            .set('Accept', 'application/json')
-            .set('Content-Type', 'application/json')
-            .then(function (response) {
-                console.log(response.body.data)
-                instance.setState({ call_records: response.body.data, showLoaders: false })
+                //console.log(response.body.data)
+                if (response.ok)
+                    instance.setState({ call_records: response.body.data, showLoaders: false })
+                else if (response.body.message)
+                    console.error(response.body.message)
+                else
+                    console.error("Request failed. Unknown error.")
             })
             .catch(function (error) {
                 instance.setState({ showLoaders: false })
@@ -321,46 +222,26 @@ class DashboardLayout extends Component {
                 'priorities': this.formPriorities,
                 'districts': this.formDistricts
             })
+            .use(superdebug(console.info))
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
             .then(function (response) {
-                console.log(response.body.data)
-                instance.setState({ call_records: response.body.data, showLoaders: false })
+                //console.log(response.body.data)
+
+                if (response.ok)
+                    instance.setState({ call_records: response.body.data, showLoaders: false })
+                else if (response.body.message){
+                    console.error(response.body.message)
+                }
+                else {
+                    console.error('Request failed. Unknown error.')
+                }
             })
             .catch(function (error) {
                 instance.setState({ showLoaders: false })
                 console.log(error)
             });
     }
-
-    addMarker = (lat, long) => {
-
-    }
-
-    // cleanCallRecords(array) {
-    //     var call_records = array
-    //     if (call_records.size > 0) {
-    //         for (var i = 0; i < call_records.length; i++) {
-    //             if (!call_records[i]) {
-    //                 this.remove(call_records, call_records[i])
-    //             } else if (isNaN(call_records[i].latitude) || isNaN(call_records[i].longitude) || !call_records[i].bpd_call_id) {
-    //                 this.remove(call_records, call_records[i])
-    //             }
-    //         }
-    //     }
-
-    //     return call_records
-    // }
-
-    remove(array, element) {
-        const index = array.indexOf(element);
-
-        if (index !== -1) {
-            array.splice(index, 1);
-        }
-    }
-
-
 
     handleDateRangeSelect(range) {
         //console.log(range);
@@ -370,13 +251,20 @@ class DashboardLayout extends Component {
         this.formEndDate = range.endDate.format("YYYY-MM-DD")
     }
 
+    handleTimelineButtonClick = (e, { name }) => {
+        this.setState({ activeTimelineButton: name })
+        switch(name){
+            case 'today': this.fetchCallRecordsByDayAgo(0); break;
+            case 'yesterday': this.fetchCallRecordsByDayAgo(-1); break;
+            case '7days': this.fetchCallRecordsByDayAgo(-7); break;
+            case '30days': this.fetchCallRecordsByDayAgo(-3); break;
+            default: { }
+        }
+    }
+
 
     toggleSidebarVisibility() {
         this.setState({ visibleSidebar: !this.state.visibleSidebar })
-    }
-
-    handleCurrentTime() {
-        this.setState({currentTime: Momentjs().toString()})
     }
 
 
@@ -388,7 +276,10 @@ class DashboardLayout extends Component {
                         <Form style={{ margin: 10 }} onSubmit={this.handleFilterFormSubmit.bind(this)}>
                             <Header as='h4'>Filters</Header>
                             <Divider horizontal>Date Range</Divider>
-                            <DateRange
+                            <DateRange 
+                                theme={{DaySelected    : {
+                                    background   : '#21BA45'
+                                  }}}
                                 onInit={this.handleDateRangeSelect.bind(this)}
                                 onChange={this.handleDateRangeSelect.bind(this)}
                             />
@@ -414,32 +305,27 @@ class DashboardLayout extends Component {
                                     />
                                 </Form.Field>
                             )}
-                            <Form.Button>Submit</Form.Button>
+                            <Form.Button color='green' >Submit</Form.Button>
                         </Form>
                     </Sidebar>
 
                     <Sidebar.Pusher>
-                        <Grid fluid inverted padded>
-                            <Grid.Row color='black' >
-                                <Grid.Column width={12} textAlign='left'>
+                        <Grid inverted padded>
+                            <Grid.Row color='black'>
+                                <Grid.Column width={2} textAlign='left' verticalAlign='middle'>
                                     <Popup
                                         trigger={<Button inverted onClick={this.toggleSidebarVisibility.bind(this)} icon='sidebar' />}
                                         content="Show sidebar"
                                         basic
                                     />
-                                    <Button.Group inverted color='green'>
-                                        <Button active='true'>Today</Button>
-                                        <Button>Yesterday</Button>
-                                        <Button>Last 7 Days</Button>
-                                        <Button>Last 30 days</Button>
-                                    </Button.Group>
                                 </Grid.Column>
-                                <Grid.Column width={4} textAlign='right' verticalAlign='middle'>
-                                    <Label color='green' floated='right' size='medium'>
-                                        <Icon name='calendar' />
-                                        Current Date:
-                                        <Label.Detail>{this.state.currentTime}</Label.Detail>
-                                    </Label>
+                                <Grid.Column width={12} textAlign='center' verticalAlign='middle'>
+                                    <Button.Group inverted color='green'>
+                                        <Button active={this.state.activeTimelineButton === 'today'} name='today' onClick={this.handleTimelineButtonClick}>Today</Button>
+                                        <Button active={this.state.activeTimelineButton === 'yesterday'} name='yesterday' onClick={this.handleTimelineButtonClick}>Yesterday</Button>
+                                        <Button active={this.state.activeTimelineButton === '7days'} name='7days' onClick={this.handleTimelineButtonClick}>Last 7 Days</Button>
+                                        <Button active={this.state.activeTimelineButton === '30days'} name='30days' onClick={this.handleTimelineButtonClick}>Last 30 days</Button>
+                                    </Button.Group>
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
@@ -461,7 +347,9 @@ class DashboardLayout extends Component {
                             />
                             <Table celled singleLine compact inverted selectable>
                                 {generateTableHeader(tableHeaders)}
-                                {generateTableRows(this.state.call_records)}
+                                <tbody>
+                                    {generateTableRows(this.state.call_records)}
+                                </tbody>
                             </Table>
                         </Segment>
                     </Sidebar.Pusher>

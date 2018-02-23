@@ -46,30 +46,38 @@ const HomeLayout = (props) => (
 
         <div className="ui container fluid">
             <div className="ui vertical segment">
-                <div className="ui three statistics">
+                <div className="ui four statistics">
                     <div className="statistic">
                         <div className="value">
-                            25,000
-            </div>
-                        <div className="label">
-                            Call Records
-            </div>
-                    </div>
-                    <div className="statistic">
-                        <div className="value">
-                            100
-            </div>
+                            {props.today}
+                        </div>
                         <div className="label">
                             Calls Today
-            </div>
+                        </div>
                     </div>
                     <div className="statistic">
                         <div className="value">
-                            1000
-            </div>
+                            {props.week}
+                        </div>
+                        <div className="label">
+                            Calls This Week
+                        </div>
+                    </div>
+                    <div className="statistic">
+                        <div className="value">
+                            {props.month}
+                        </div>
                         <div className="label">
                             Calls This Month
-            </div>
+                        </div>
+                    </div>
+                    <div className="statistic">
+                        <div className="value">
+                            {props.total}
+                        </div>
+                        <div className="label">
+                            Call Records
+                        </div>
                     </div>
                 </div>
             </div>
