@@ -526,7 +526,7 @@ class DashboardLayout extends Component {
             case 'today': this.fetchCallRecordsByDayAgo(0); break;
             case 'yesterday': this.fetchCallRecordsByDayAgo(-1); break;
             case '7days': this.fetchCallRecordsByDayAgo(-7); break;
-            case '30days': this.fetchCallRecordsByDayAgo(-3); break;
+            case '30days': this.fetchCallRecordsByDayAgo(-30); break;
             default: { }
         }
     }
