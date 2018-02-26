@@ -14,6 +14,7 @@ class HomeController extends Component {
 
     componentWillMount(){
         var instance = this
+        //Fetches all the totals to display in the stats section in async.
         async.series([
              (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/today').then(function(response){
                 if (response.ok){
@@ -21,7 +22,7 @@ class HomeController extends Component {
                 } else if (response.body.message){
                     console.error(response.body.message)
                 } else {
-                    console.error("Request Failed. Unknown error.")
+                    console.error('Request Failed. Unknown error.')
                 }
                 cb()
             }),
@@ -31,7 +32,7 @@ class HomeController extends Component {
                 } else if (response.body.message){
                     console.error(response.body.message)
                 } else {
-                    console.error("Request Failed. Unknown error.")
+                    console.error('Request Failed. Unknown error.')
                 }
                 cb()
             }),
@@ -41,7 +42,7 @@ class HomeController extends Component {
                 } else if (response.body.message){
                     console.error(response.body.message)
                 } else {
-                    console.error("Request Failed. Unknown error.")
+                    console.error('Request Failed. Unknown error.')
                 }
                 cb()
             }),
@@ -51,10 +52,10 @@ class HomeController extends Component {
                 } else if (response.body.message){
                     console.error(response.body.message)
                 } else {
-                    console.error("Request Failed. Unknown error.")
+                    console.error('Request Failed. Unknown error.')
                 }
                 cb()
-            }),
+            })
         ]);
     }
 
