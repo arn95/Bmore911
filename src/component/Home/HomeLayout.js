@@ -54,10 +54,10 @@ const HomeLayout = (props) => (
             <div className="ui vertical segment">
 
                 <Statistic.Group size='small' widths={2}>
-                    <Statistic label='Today' value={props.today}/>
-                    <Statistic label='This Week' value={props.week}/>
-                    <Statistic label='This Month' value={props.month}/>
-                    <Statistic label='Total' value={props.total}/>
+                    <Statistic label='Today' value={props.totals.today}/>
+                    <Statistic label='This Week' value={props.totals.week}/>
+                    <Statistic label='This Month' value={props.totals.month}/>
+                    <Statistic label='This Year' value={props.totals.year}/>
                 </Statistic.Group>
             </div>
         </div>

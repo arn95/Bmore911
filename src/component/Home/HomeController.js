@@ -7,62 +7,72 @@ import async from 'async'
 
 class HomeController extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state = { today: 0, week: 0, month: 0, total: 0}
+        this.state = { totals: {} }
     }
 
-    componentWillMount(){
+    componentWillMount() {
         var instance = this
-        //Fetches all the totals to display in the stats section in async.
-        async.series([
-             (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/today').then(function(response){
-                if (response.ok){
-                    instance.setState( {today: response.body.data } )
-                } else if (response.body.message){
-                    console.error(response.body.message)
-                } else {
-                    console.error('Request Failed. Unknown error.')
-                }
-                cb()
-            }),
-            (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/week').then(function(response){
-                if (response.ok){
-                    instance.setState( {week: response.body.data } )
-                } else if (response.body.message){
-                    console.error(response.body.message)
-                } else {
-                    console.error('Request Failed. Unknown error.')
-                }
-                cb()
-            }),
-            (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/month').then(function(response){
-                if (response.ok){
-                    instance.setState( {month: response.body.data } )
-                } else if (response.body.message){
-                    console.error(response.body.message)
-                } else {
-                    console.error('Request Failed. Unknown error.')
-                }
-                cb()
-            }),
-            (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/total').then(function(response){
-                if (response.ok){
-                    instance.setState( {total: response.body.data } )
-                } else if (response.body.message){
-                    console.error(response.body.message)
-                } else {
-                    console.error('Request Failed. Unknown error.')
-                }
-                cb()
-            })
-        ]);
+        // //Fetches all the totals to display in the stats section in async.
+        // async.series([
+        //      (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/today').then(function(response){
+        //         if (response.ok){
+        //             instance.setState( {today: response.body.data } )
+        //         } else if (response.body.message){
+        //             console.error(response.body.message)
+        //         } else {
+        //             console.error('Request Failed. Unknown error.')
+        //         }
+        //         cb()
+        //     }),
+        //     (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/week').then(function(response){
+        //         if (response.ok){
+        //             instance.setState( {week: response.body.data } )
+        //         } else if (response.body.message){
+        //             console.error(response.body.message)
+        //         } else {
+        //             console.error('Request Failed. Unknown error.')
+        //         }
+        //         cb()
+        //     }),
+        //     (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/month').then(function(response){
+        //         if (response.ok){
+        //             instance.setState( {month: response.body.data } )
+        //         } else if (response.body.message){
+        //             console.error(response.body.message)
+        //         } else {
+        //             console.error('Request Failed. Unknown error.')
+        //         }
+        //         cb()
+        //     }),
+        //     (cb) => request.get(AppStatics.API_BASE_URL + '/records/count/year').then(function(response){
+        //         if (response.ok){
+        //             instance.setState( {year: response.body.data } )
+        //         } else if (response.body.message){
+        //             console.error(response.body.message)
+        //         } else {
+        //             console.error('Request Failed. Unknown error.')
+        //         }
+        //         cb()
+        //     })
+        // ]);
+
+        request.get(AppStatics.API_BASE_URL + '/records/count/all').then(function (response) {
+            if (response.ok) {
+                instance.setState({ totals: response.body.data })
+            } else if (response.body.message) {
+                console.error(response.body.message)
+            } else {
+                console.error('Request Failed. Unknown error.')
+            }
+        })
     }
 
 
     render() {
         return (
-            <HomeLayout today={this.state.today} week={this.state.week} month={this.state.month} total={this.state.total}/>
+            <HomeLayout totals={this.state.totals} />
         );
     }
 }
