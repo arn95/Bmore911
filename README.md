@@ -1,6 +1,6 @@
 # BMORE911
 
-[![Build Status](https://travis-ci.org/arn95/Bmore911.svg?branch=master)](https://travis-ci.org/arn95/Bmore911)
+TRAVIS-CI: [![Build Status](https://travis-ci.org/arn95/Bmore911.svg?branch=master)](https://travis-ci.org/arn95/Bmore911)
 
 ## Table of Contents
 
@@ -60,7 +60,7 @@
 
 ## Project Summary
 
-Bmore911 front-end displays the latest phone calls received by Baltimore Police Dept. as soon as they become available. The app fetches data from https://api.bmore911.com which processes the call record files published by BPD in https://data.baltimorecity.gov. Due to the amount of records the app is limited to providing call data only for the current year. The app uses ReactJS and is built from scratch using Semantic-UI React components and a bunch of other libraries such as react-google-maps that provide the React wrapper component for Google Maps. It is hosted on Heroku with a free account using an instance of ClearDB (MySQL-as-a-service) addon provided by Heroku. It's on a paid plan of 1GB due to the amount of phone calls stored in it.
+Bmore911 front-end displays the latest phone calls received by Baltimore Police Dept. as soon as they become available. The app fetches data from https://api.bmore911.com which processes the call record files published by BPD in https://data.baltimorecity.gov. Due to the amount of records the app is limited to providing call data only for the current year. The app uses ReactJS and is built from scratch using Semantic-UI React components and a bunch of other libraries such as react-google-maps that provide the React wrapper component for Google Maps. It is hosted on Heroku with a free account using an instance of ClearDB (MySQL-as-a-service) addon provided by Heroku. It's on a paid plan of 1GB due to the amount of phone calls stored in it. Bmore911 app makes use of continuous integration using Travis-CI. Please find .travis.yml in the root dir to check out config.
 
 ### Features
 * Display of phone call locations in map using MarkerCluster to group markers.
