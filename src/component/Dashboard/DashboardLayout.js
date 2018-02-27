@@ -118,7 +118,7 @@ class DashboardLayout extends Component {
             visibleSidebar: false,
             call_records: [],
             isMarkerShown: false,
-            showLoaders: true,
+            showLoaders: false,
             activeTimelineButton: 'today',
             showModal: false,
             marker_modal_data: {}
@@ -126,12 +126,12 @@ class DashboardLayout extends Component {
     }
 
     componentDidMount() {
-        this.fetchCallRecordsByDayAgo(0)
+        //this.fetchCallRecordsByDayAgo(0)
     }
 
     fetchCallRecordsByDayAgo(day) {
         var instance = this
-        this.setState({showLoaders:true})
+        instance.setState({ showLoaders: true, call_records: []})
         request
             .post(AppStatics.API_BASE_URL + '/records/search')
             .send({
@@ -194,6 +194,7 @@ class DashboardLayout extends Component {
 
     handleFilterFormSubmit = () => {
         var instance = this
+        instance.setState({ showLoaders: true, call_records: []})
         request
             .post(AppStatics.API_BASE_URL + '/records/search')
             .send({

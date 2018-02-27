@@ -1,7 +1,7 @@
 {
   "name": "bmore911",
   "version": "0.1.0",
-  "homepage": "https://bmore911.herokuapp.com",
+  "homepage": "https://bmore911.com",
   "private": true,
   "dependencies": {
     "@types/googlemaps": "^3.30.7",

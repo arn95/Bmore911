@@ -1,6 +1,6 @@
 
 const AppStatics = {
-    API_BASE_URL: 'https://bmore911api.herokuapp.com/api',
+    API_BASE_URL: 'https://api.bmore911.com/api',
     DISTRICTS : [
         { 0: { name: 'North', value: 'ND' } },
         { 1: { name: 'West', value: 'WD' } },
