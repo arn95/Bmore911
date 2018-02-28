@@ -126,7 +126,7 @@ class DashboardLayout extends Component {
     }
 
     componentDidMount() {
-        //this.fetchCallRecordsByDayAgo(0)
+        this.fetchCallRecordsByDayAgo(0)
     }
 
     fetchCallRecordsByDayAgo(day) {
