@@ -101,7 +101,7 @@ You can find a similar tool at https://data.baltimorecity.gov portal, however, i
 
 In the homepage you can view stats of the current dataset. 
 
-![Homepage Stats](images/homepage.png)
+![Homepage Stats](images/bmore911-homepage.png)
 
 #### Dashboard
 
@@ -115,7 +115,7 @@ Image is showing the map after clicking the 'Last 30 Days' button.
 
 1. You can click the sidebar menu button (button with the 3 parallel bars) in order to open up filtering options for the records.
 
-![Dashboard Sidebar](images/dashboardsidebar.png)
+![Dashboard Sidebar](images/dashboard-sidebar.png)
 
 2. You SHOULD select a date range that can of course be even just today by clicking the current date twice. For the sake of another example the filters chosen are as below. Please note that Priority and District filters do not have to be on.
 
