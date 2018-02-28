@@ -11,9 +11,9 @@ Portal is live: https://bmore911.com
   - [Features](#features)
   - [Upcoming Features](#upcoming-features)
   - [Usage](#usage)
-    - [Homepage](#usage-homepage)
-    - [Dashboard](#usage-dashboard)
-      - [Searching](#dashboard-searching)
+    - [Homepage](#homepage)
+    - [Dashboard](#dashboard)
+      - [Searching](#searching)
 - [Project Setup](#project-setup)
   - [Updating React to New Releases](#updating-to-new-releases)
   - [Available Scripts](#available-scripts)
@@ -32,7 +32,7 @@ Portal is live: https://bmore911.com
     - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system)
     - [When to Use the `public` Folder](#when-to-use-the-public-folder)
   - [Using Global Variables](#using-global-variables)
-  - [Proxying API Requests (avoiding CORS)](#proxying-api-requests-in-development)
+  - [Proxying API Requests](#proxying-api-requests)
     - ["Invalid Host Header" Errors After Configuring Proxy](#invalid-host-header-errors-after-configuring-proxy)
     - [Configuring the Proxy Manually](#configuring-the-proxy-manually)
     - [Configuring a WebSocket Proxy](#configuring-a-websocket-proxy)
@@ -525,7 +525,7 @@ This makes it obvious you are using a global variable intentionally rather than 
 
 Alternatively, you can force the linter to ignore any line by adding `// eslint-disable-line` after it.
 
-## Proxying API Requests (avoiding CORS)
+## Proxying API Requests
 
 >Note: this feature is available with `react-scripts@0.2.3` and higher.
 
