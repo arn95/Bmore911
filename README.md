@@ -2,83 +2,105 @@
 
 TRAVIS-CI: [![Build Status](https://travis-ci.org/arn95/Bmore911.svg?branch=master)](https://travis-ci.org/arn95/Bmore911)
 
+Portal is live: https://bmore911.com
+
 ## Table of Contents
 
 - [Project Summary](#project-summary)
-- [Updating React to New Releases](#updating-to-new-releases)
-- [Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
-- [Installing a Dependency](#installing-a-dependency)
-- [Importing a Component](#importing-a-component)
-- [Adding a Stylesheet](#adding-a-stylesheet)
-- [Post-Processing CSS](#post-processing-css)
-- [Adding a CSS Preprocessor (Sass, Less etc.)](#adding-a-css-preprocessor-sass-less-etc)
-- [Adding Images, Fonts, and Files](#adding-images-fonts-and-files)
-- [Using the `public` Folder](#using-the-public-folder)
-  - [Changing the HTML](#changing-the-html)
-  - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system)
-  - [When to Use the `public` Folder](#when-to-use-the-public-folder)
-- [Using Global Variables](#using-global-variables)
-- [Proxying API Requests (avoiding CORS)](#proxying-api-requests-in-development)
-  - ["Invalid Host Header" Errors After Configuring Proxy](#invalid-host-header-errors-after-configuring-proxy)
-  - [Configuring the Proxy Manually](#configuring-the-proxy-manually)
-  - [Configuring a WebSocket Proxy](#configuring-a-websocket-proxy)
-- [Running Tests](#running-tests)
-  - [Filename Conventions](#filename-conventions)
-  - [Command Line Interface](#command-line-interface)
-  - [Version Control Integration](#version-control-integration)
-  - [Writing Tests](#writing-tests)
-  - [Testing Components](#testing-components)
-  - [Initializing Test Environment](#initializing-test-environment)
-  - [Focusing and Excluding Tests](#focusing-and-excluding-tests)
-  - [Coverage Reporting](#coverage-reporting)
-  - [Continuous Integration](#continuous-integration)
-  - [Disabling jsdom](#disabling-jsdom)
-  - [Snapshot Testing](#snapshot-testing)
-- [Making a Progressive Web App](#making-a-progressive-web-app)
-  - [Opting Out of Caching](#opting-out-of-caching)
-  - [Offline-First Considerations](#offline-first-considerations)
-  - [Progressive Web App Metadata](#progressive-web-app-metadata)
-- [Analyzing the Bundle Size](#analyzing-the-bundle-size)
-- [Deployment](#deployment)
-  - [Static Server](#static-server)
-  - [Other Solutions](#other-solutions)
-  - [Serving Apps with Client-Side Routing](#serving-apps-with-client-side-routing)
-  - [Building for Relative Paths](#building-for-relative-paths)
-  - [Heroku](#heroku)
-- [Troubleshooting](#troubleshooting)
-  - [`npm start` doesn’t detect changes](#npm-start-doesnt-detect-changes)
-  - [`npm test` hangs on macOS Sierra](#npm-test-hangs-on-macos-sierra)
-  - [`npm run build` exits too early](#npm-run-build-exits-too-early)
-  - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
-  - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
-  - [Moment.js locales are missing](#momentjs-locales-are-missing)
+  - [Solving a problem](#solving-a-problem)
+  - [Features](#features)
+  - [Upcoming Features](#upcoming-features)
+  - [Usage](#usage)
+- [Project Setup](#project-setup)
+  - [Updating React to New Releases](#updating-to-new-releases)
+  - [Available Scripts](#available-scripts)
+    - [npm start](#npm-start)
+    - [npm test](#npm-test)
+    - [npm run build](#npm-run-build)
+    - [npm run eject](#npm-run-eject)
+  - [Installing a Dependency](#installing-a-dependency)
+  - [Importing a Component](#importing-a-component)
+  - [Adding a Stylesheet](#adding-a-stylesheet)
+  - [Post-Processing CSS](#post-processing-css)
+  - [Adding a CSS Preprocessor (Sass, Less etc.)](#adding-a-css-preprocessor-sass-less-etc)
+  - [Adding Images, Fonts, and Files](#adding-images-fonts-and-files)
+  - [Using the `public` Folder](#using-the-public-folder)
+    - [Changing the HTML](#changing-the-html)
+    - [Adding Assets Outside of the Module System](#adding-assets-outside-of-the-module-system)
+    - [When to Use the `public` Folder](#when-to-use-the-public-folder)
+  - [Using Global Variables](#using-global-variables)
+  - [Proxying API Requests (avoiding CORS)](#proxying-api-requests-in-development)
+    - ["Invalid Host Header" Errors After Configuring Proxy](#invalid-host-header-errors-after-configuring-proxy)
+    - [Configuring the Proxy Manually](#configuring-the-proxy-manually)
+    - [Configuring a WebSocket Proxy](#configuring-a-websocket-proxy)
+  - [Running Tests](#running-tests)
+    - [Filename Conventions](#filename-conventions)
+    - [Command Line Interface](#command-line-interface)
+    - [Version Control Integration](#version-control-integration)
+    - [Writing Tests](#writing-tests)
+    - [Testing Components](#testing-components)
+    - [Initializing Test Environment](#initializing-test-environment)
+    - [Focusing and Excluding Tests](#focusing-and-excluding-tests)
+    - [Coverage Reporting](#coverage-reporting)
+    - [Continuous Integration](#continuous-integration)
+    - [Disabling jsdom](#disabling-jsdom)
+    - [Snapshot Testing](#snapshot-testing)
+  - [Making a Progressive Web App](#making-a-progressive-web-app)
+    - [Opting Out of Caching](#opting-out-of-caching)
+    - [Offline-First Considerations](#offline-first-considerations)
+    - [Progressive Web App Metadata](#progressive-web-app-metadata)
+  - [Analyzing the Bundle Size](#analyzing-the-bundle-size)
+  - [Deployment](#deployment)
+    - [Static Server](#static-server)
+    - [Other Solutions](#other-solutions)
+    - [Serving Apps with Client-Side Routing](#serving-apps-with-client-side-routing)
+    - [Building for Relative Paths](#building-for-relative-paths)
+    - [Heroku](#heroku)
+  - [Troubleshooting](#troubleshooting)
+    - [`npm start` doesn’t detect changes](#npm-start-doesnt-detect-changes)
+    - [`npm test` hangs on macOS Sierra](#npm-test-hangs-on-macos-sierra)
+    - [`npm run build` exits too early](#npm-run-build-exits-too-early)
+    - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
+    - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
+    - [Moment.js locales are missing](#momentjs-locales-are-missing)
 
 
 ## Project Summary
 
 Bmore911 front-end displays the latest phone calls received by Baltimore Police Dept. as soon as they become available. The app fetches data from https://api.bmore911.com which processes the call record files published by BPD in https://data.baltimorecity.gov. Due to the amount of records the app is limited to providing call data only for the current year. The app uses ReactJS and is built from scratch using Semantic-UI React components and a bunch of other libraries such as react-google-maps that provide the React wrapper component for Google Maps. It is hosted on Heroku with a free account using an instance of ClearDB (MySQL-as-a-service) addon provided by Heroku. It's on a paid plan of 1GB due to the amount of phone calls stored in it. Bmore911 app makes use of continuous integration using Travis-CI. Please find .travis.yml in the root dir to check out config.
 
+### Solving a Problem
+You can find a similar tool at https://data.baltimorecity.gov portal, however, it is almost unusable. It operates very slow due to the massive amounts of data it handles in the background and the call location markers on the map are not clustered and therefore it is hard to tell concentrations. This portal only handles this years records and operates in limited timeframes for casual usage. It is easy to navigate and use and there are no complex filters or criteria to actually show something on the screen. Markers shown are clustered to pinpoint concentrations of calls in different parts of the city. In addition it provides quick stats in the homepage for someone just interested in knowing for example how many calls were made today, or this week.
+
 ### Features
 * Display of phone call locations in map using MarkerCluster to group markers.
-* Table that displays phone call details such as Call Time, Priority, Description, District, Street Address, Longitude, Latitude
-* Filtering of calls by start date or end date (or both), priority and district
-* Homepage displays count of phone calls made today, this week, this month and this year
-* Google Map embed allows zooming, scrolling and clicking of marker clusters
+* Table that displays phone call details such as Call Time, Priority, Description, District, Street Address, Longitude, Latitude.
+* Filtering of calls by start date or end date (or both), priority and district.
+* Homepage displays count of phone calls made today, this week, this month and this year.
+* Google Map embed allows zooming, scrolling and clicking of marker clusters.
 
 ### Upcoming Features
-* More filter options
-* Standardize descriptions and provide a way to filter results using them
-* Add InfoBox on markers to display phone call details on click
-* Performance improvements
-* Add client authentication layer
-* Restrict dashboard only to registered and logged in users (user authentication layer)
-* Store call record files in Amazon AWS instead of Heroku's ephemeral filesystem
+* More filter options.
+* Standardize descriptions and provide a way to filter results using them.
+* Add InfoBox on markers to display phone call details on click.
+* Performance improvements.
+* Add client authentication layer.
+* Add more stats in the homepage. Maybe redesign the homepage to make stats more visible.
+* Restrict dashboard only to registered and logged in users (user authentication layer).
+* Store call record files in Amazon AWS instead of Heroku's ephemeral filesystem.
 
-Below you will find useful info about the creation of this project details on how things work. They were written by maintainers of create-react-app and edited by me to maintain context.
+### Issues
+* Series of searches that return large batches of records slow the site down to the point of freezing due to the deallocation and reallocation of markers in the map. This is either due to the fact that I am running on a free Heroku instance, react-google-maps library is not properly handling lifecycle, or simply Google Maps has a bug and is not optimizing for large marker sets.
+
+### Usage
+
+In the homepage you can view stats of the current dataset. 
+
+![Homepage Stats](images/Homepage.png)
+
+# Project Setup
+
+Below you will find useful info about the creation of this project and details on how things work. They were written by maintainers of create-react-app and edited by me to maintain context.
 
 ## Updating React to New Releases
 
