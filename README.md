@@ -11,6 +11,9 @@ Portal is live: https://bmore911.com
   - [Features](#features)
   - [Upcoming Features](#upcoming-features)
   - [Usage](#usage)
+    - [Homepage](#usage-homepage)
+    - [Dashboard](#usage-dashboard)
+      - [Searching](#dashboard-searching)
 - [Project Setup](#project-setup)
   - [Updating React to New Releases](#updating-to-new-releases)
   - [Available Scripts](#available-scripts)
@@ -94,9 +97,34 @@ You can find a similar tool at https://data.baltimorecity.gov portal, however, i
 
 ### Usage
 
+#### Homepage
+
 In the homepage you can view stats of the current dataset. 
 
-![Homepage Stats](images/Homepage.png)
+![Homepage Stats](images/homepage.png)
+
+#### Dashboard
+
+The button group in the top bar has quick record queries: 'Today', 'Yesterday', 'Last 7 Days' and 'Last 30 Days'.
+
+Image is showing the map after clicking the 'Last 30 Days' button.
+
+![Dashboard Button Group](images/dashboard-button-group.png)
+
+##### Searching
+
+1. You can click the sidebar menu button (button with the 3 parallel bars) in order to open up filtering options for the records.
+
+![Dashboard Sidebar](images/dashboard-button-group.png)
+
+2. You SHOULD select a date range that can of course be even just today by clicking the current date twice. For the sake of another example the filters chosen are as below. Please note that Priority and District filters do not have to be on.
+
+![Dashboard Sidebar Filters](images/dashboard-sidebar-filters.png)
+
+3. Check out the results for the selected filters
+
+![Dashboard Result](images/dashboard-sidebar-filters-result.png)
+
 
 # Project Setup
 
