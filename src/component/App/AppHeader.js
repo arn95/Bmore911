@@ -28,7 +28,7 @@ class AppHeader extends Component {
                             onClick={this.handleItemClick}>
                             <Link to='/'>Home</Link>
                         </Menu.Item>
-                        <Menu.Item
+                        {/* <Menu.Item
                             active={activeItem === 'about'}
                             name='about'
                             inverted={'true'}
@@ -36,7 +36,7 @@ class AppHeader extends Component {
                             as='span'
                             onClick={this.handleItemClick}>
                             <Link to='/about'>About</Link>
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Item
                             position='right'>
                             <Link to='/dashboard'>
