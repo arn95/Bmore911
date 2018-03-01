@@ -66,6 +66,7 @@ Portal is live: https://bmore911.com
     - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
     - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
     - [Moment.js locales are missing](#momentjs-locales-are-missing)
+- [Contact](#contact)
 
 
 ## Project Summary
@@ -84,13 +85,10 @@ You can find a similar tool at https://data.baltimorecity.gov portal, however, i
 
 ### Upcoming Features
 * More filter options.
-* Standardize descriptions and provide a way to filter results using them.
+* Standardize call record descriptions and provide a way to filter results using them.
 * Add InfoBox on markers to display phone call details on click.
 * Performance improvements.
-* Add client authentication layer.
 * Add more stats in the homepage. Maybe redesign the homepage to make stats more visible.
-* Restrict dashboard only to registered and logged in users (user authentication layer).
-* Store call record files in Amazon AWS instead of Heroku's ephemeral filesystem.
 
 ### Issues
 * Series of searches that return large batches of records slow the site down to the point of freezing due to the deallocation and reallocation of markers in the map. This is either due to the fact that I am running on a free Heroku instance, react-google-maps library is not properly handling lifecycle, or simply Google Maps has a bug and is not optimizing for large marker sets.
@@ -1353,3 +1351,7 @@ To resolve this:
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
 In the future, we might start automatically compiling incompatible third-party modules, but it is not currently supported. This approach would also slow down the production builds.
+
+# Contact
+
+If you have any questions or simply want to say hi send me an email at ```arnold.balliu@gmail.com```
